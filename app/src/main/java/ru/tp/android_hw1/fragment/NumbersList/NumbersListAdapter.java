@@ -74,6 +74,7 @@ class NumbersListViewHolder extends RecyclerView.ViewHolder {
     public NumbersListViewHolder(@NonNull View itemView) {
         super(itemView);
         Number = itemView.findViewById(R.id.number);
+
         //  TODO(): setOnClickListener
     }
 }
