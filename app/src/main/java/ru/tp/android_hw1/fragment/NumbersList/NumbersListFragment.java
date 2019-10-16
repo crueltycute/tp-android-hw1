@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 import androidx.annotation.NonNull;
@@ -17,29 +18,18 @@ import ru.tp.android_hw1.R;
 
 
 public class NumbersListFragment extends Fragment {
-    private static final int DEFAULT_LAST_NUM = 3;
+    private static final int DEFAULT_LAST_NUM = 100;
+    private static int lastNumber = DEFAULT_LAST_NUM;
 
-    private static final String KEY_LAST_NUMBER = "last_number";
-    private static int lastNumber = 100;
-
-    public static NumbersListFragment newInstance(int lastNumberParam) {
+    public static NumbersListFragment newInstance() {
         NumbersListFragment fragment = new NumbersListFragment();
         Bundle bundle = new Bundle();
-//        lastNumber = lastNumberParam;
-//        bundle.putInt(KEY_LAST_NUMBER, lastNumber);
         fragment.setArguments(bundle);
         return fragment;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        if (savedInstanceState != null) {
-            int lastNumber = savedInstanceState.getInt(KEY_LAST_NUMBER, DEFAULT_LAST_NUM);
-            Log.d(getLogTag(), "onCreate: " + lastNumber);
-        } else {
-            Log.d(getLogTag(), "onCreate");
-        }
-
         super.onCreate(savedInstanceState);
     }
 
@@ -67,12 +57,21 @@ public class NumbersListFragment extends Fragment {
         GridLayoutManager numbersLayoutManager = new GridLayoutManager(getContext(), columnsNum, currentOrientation, false);
         numbersView.setLayoutManager(numbersLayoutManager);
 
-        NumbersListAdapter numbersAdapter = new NumbersListAdapter();
+        final NumbersListAdapter numbersAdapter = new NumbersListAdapter();
         numbersView.setAdapter(numbersAdapter);
 
         for (int i = 1; i <= lastNumber; i++) {
             numbersAdapter.addNumber(i);
         }
+
+        Button newNumberButton = view.findViewById(R.id.new_number);
+        newNumberButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numbersAdapter.addNumber(++lastNumber);
+                Log.d(getLogTag(), "onClick newNumberButton: " + lastNumber);
+            }
+        });
 
         Log.d(getLogTag(), "onViewCreated");
     }

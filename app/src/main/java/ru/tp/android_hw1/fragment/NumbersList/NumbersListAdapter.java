@@ -31,17 +31,16 @@ class Number {
 
 public class NumbersListAdapter extends RecyclerView.Adapter<NumbersListViewHolder> {
     private List<Number> Numbers;
+    private int NumberCount;
 
     public void addNumber(int number) {
-        Numbers.add(new Number(number));
+        Numbers.add(new Number(++NumberCount));
+        notifyItemInserted(NumberCount);
     }
 
     NumbersListAdapter() {
         Numbers = new ArrayList<Number>();
-
-//        for (int i = 0; i < 100; i++) {
-//            Numbers.add(new Number(i));
-//        }
+        NumberCount = 0;
     }
 
     @NonNull
