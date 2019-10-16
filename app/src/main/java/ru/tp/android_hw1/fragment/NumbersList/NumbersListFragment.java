@@ -11,10 +11,13 @@ import android.widget.Button;
 import androidx.fragment.app.Fragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import ru.tp.android_hw1.R;
+import ru.tp.android_hw1.fragment.OneNumberFragment;
 
 
 public class NumbersListFragment extends Fragment {

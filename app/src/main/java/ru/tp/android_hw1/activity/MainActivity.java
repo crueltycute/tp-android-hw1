@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.util.Log;
 
 import ru.tp.android_hw1.R;
+import ru.tp.android_hw1.fragment.NumbersList.NumbersListAdapter;
 import ru.tp.android_hw1.fragment.NumbersList.NumbersListFragment;
+import ru.tp.android_hw1.fragment.OneNumberFragment;
 
 public class MainActivity extends AppCompatActivity {
 

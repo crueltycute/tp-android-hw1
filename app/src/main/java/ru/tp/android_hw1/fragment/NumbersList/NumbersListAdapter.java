@@ -1,10 +1,11 @@
 package ru.tp.android_hw1.fragment.NumbersList;
 
-import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,25 +14,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.tp.android_hw1.R;
+import ru.tp.android_hw1.fragment.OneNumberFragment;
+import ru.tp.android_hw1.fragment.NumbersList.NumbersListFragment;
 
-
-class Number {
-    Number(int number) {
-        Number = number;
-        mColor = countNumberColor(number);
-    }
-
-    private int countNumberColor(int number) {
-        return number % 2 == 1 ? Color.RED : Color.BLUE;  // 0 - четное, красный; 1 - нечетное, синий
-    }
-
-    int Number;
-    int mColor;
-}
 
 public class NumbersListAdapter extends RecyclerView.Adapter<NumbersListViewHolder> {
-    private List<Number> Numbers;
-    private int NumberCount;
+    public List<Number> Numbers;  // TODO(): make private
+    public static int NumberCount;  // TODO(): make private
+
+    public static void replaceFragment() {
+    }
 
     public void addNumber(int number) {
         Numbers.add(new Number(++NumberCount));
@@ -74,6 +66,17 @@ class NumbersListViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         Number = itemView.findViewById(R.id.number);
 
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(getLogTag(), "clicked num");
+            }
+        });
+
         //  TODO(): setOnClickListener
+    }
+
+    private String getLogTag() {
+        return getClass().getSimpleName();
     }
 }
