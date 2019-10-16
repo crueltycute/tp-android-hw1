@@ -8,9 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 
 import ru.tp.android_hw1.R;
-import ru.tp.android_hw1.fragment.NumbersListFragment;
+import ru.tp.android_hw1.fragment.NumbersList.NumbersListFragment;
 
 public class MainActivity extends AppCompatActivity {
+    private int lastNumber = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,16 +20,17 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(getLogTag(), "onCreate");
 
-        initNumbersListFragment();
+        addNumbersListFragment();
     }
 
-    private void initNumbersListFragment() {
+    private void addNumbersListFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        NumbersListFragment numbersList = (NumbersListFragment) fragmentManager.findFragmentById(R.id.fragment_numbers_list);
+
+        NumbersListFragment numbersList = (NumbersListFragment) fragmentManager.findFragmentById(R.id.numbers_list_fragment);
 
         if (numbersList == null) {
-            transaction.replace(R.id.main, new NumbersListFragment());
+            transaction.replace(R.id.main, NumbersListFragment.newInstance(lastNumber));
         }
 
         transaction.commit();
