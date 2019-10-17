@@ -1,6 +1,7 @@
 package ru.tp.android_hw1.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +33,7 @@ public class OneNumberFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_numbers_list, container, false);
+        return inflater.inflate(R.layout.fragment_one_number, container, false);
     }
 
     @Override
@@ -40,6 +41,7 @@ public class OneNumberFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         TextView oneNumberView = view.findViewById(R.id.one_number_fragment);
+
         oneNumberView.setText(String.valueOf(CurrentNumber.Number));
         oneNumberView.setTextColor(CurrentNumber.mColor);
     }

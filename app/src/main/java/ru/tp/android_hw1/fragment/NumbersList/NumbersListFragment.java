@@ -60,7 +60,7 @@ public class NumbersListFragment extends Fragment {
         GridLayoutManager numbersLayoutManager = new GridLayoutManager(getContext(), columnsNum, currentOrientation, false);
         numbersView.setLayoutManager(numbersLayoutManager);
 
-        final NumbersListAdapter numbersAdapter = new NumbersListAdapter();
+        final NumbersListAdapter numbersAdapter = new NumbersListAdapter(getFragmentManager());
         numbersView.setAdapter(numbersAdapter);
 
         for (int i = 1; i <= lastNumber; i++) {

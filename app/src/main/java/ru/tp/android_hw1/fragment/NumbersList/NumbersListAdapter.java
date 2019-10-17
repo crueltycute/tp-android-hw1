@@ -5,9 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -15,24 +16,22 @@ import java.util.List;
 
 import ru.tp.android_hw1.R;
 import ru.tp.android_hw1.fragment.OneNumberFragment;
-import ru.tp.android_hw1.fragment.NumbersList.NumbersListFragment;
 
 
 public class NumbersListAdapter extends RecyclerView.Adapter<NumbersListViewHolder> {
     public List<Number> Numbers;  // TODO(): make private
     public static int NumberCount;  // TODO(): make private
-
-    public static void replaceFragment() {
-    }
+    public FragmentManager mFragmentManager;  // TODO(): make private
 
     public void addNumber(int number) {
         Numbers.add(new Number(++NumberCount));
         notifyItemInserted(NumberCount);
     }
 
-    NumbersListAdapter() {
+    NumbersListAdapter(FragmentManager fragmentManager) {
         Numbers = new ArrayList<Number>();
         NumberCount = 0;
+        mFragmentManager = fragmentManager;
     }
 
     @NonNull
@@ -45,10 +44,20 @@ public class NumbersListAdapter extends RecyclerView.Adapter<NumbersListViewHold
 
     @Override
     public void onBindViewHolder(@NonNull NumbersListViewHolder holder, int position) {
-        Number num = Numbers.get(position);
+        final Number num = Numbers.get(position);
 
         holder.Number.setText(String.valueOf(num.Number));
         holder.Number.setTextColor(num.mColor);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = mFragmentManager.beginTransaction();
+                transaction.replace(R.id.numbers_list_fragment, OneNumberFragment.newInstance(num.Number));
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
 
         // TODO(): log
     }
@@ -65,13 +74,6 @@ class NumbersListViewHolder extends RecyclerView.ViewHolder {
     public NumbersListViewHolder(@NonNull View itemView) {
         super(itemView);
         Number = itemView.findViewById(R.id.number);
-
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(getLogTag(), "clicked num");
-            }
-        });
 
         //  TODO(): setOnClickListener
     }
