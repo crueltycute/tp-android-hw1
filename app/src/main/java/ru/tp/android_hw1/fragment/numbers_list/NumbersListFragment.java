@@ -17,19 +17,31 @@ import ru.tp.android_hw1.R;
 
 
 public class NumbersListFragment extends Fragment {
-    private static final int DEFAULT_LAST_NUM = 100;
-    private static int lastNumber = DEFAULT_LAST_NUM;
+    private static int mLastNumber;
+    private static String KEY_LAST_NUMBER = "key_last_number";
 
-    public static NumbersListFragment newInstance() {
+    public static NumbersListFragment newInstance(int numberCount) {
         NumbersListFragment fragment = new NumbersListFragment();
+
         Bundle bundle = new Bundle();
+
+        mLastNumber = numberCount;
+        bundle.putInt(KEY_LAST_NUMBER, mLastNumber);
+
         fragment.setArguments(bundle);
+
         return fragment;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Bundle arguments = getArguments();
+
+        if (arguments != null) {
+            mLastNumber = arguments.getInt(KEY_LAST_NUMBER);
+        }
     }
 
     @Nullable
@@ -41,6 +53,10 @@ public class NumbersListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        if (savedInstanceState != null) {
+            mLastNumber = savedInstanceState.getInt(KEY_LAST_NUMBER);
+        }
 
         RecyclerView numbersView = view.findViewById(R.id.numbers_list_view);
 
@@ -57,7 +73,7 @@ public class NumbersListFragment extends Fragment {
         final NumbersListAdapter numbersAdapter = new NumbersListAdapter(getFragmentManager());
         numbersView.setAdapter(numbersAdapter);
 
-        for (int i = 1; i <= lastNumber; i++) {
+        for (int i = 1; i <= mLastNumber; i++) {
             numbersAdapter.addNumber();
         }
 
@@ -65,7 +81,7 @@ public class NumbersListFragment extends Fragment {
         newNumberButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                lastNumber++;
+                mLastNumber++;
                 numbersAdapter.addNumber();
             }
         });
@@ -74,5 +90,6 @@ public class NumbersListFragment extends Fragment {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
+        outState.putInt(KEY_LAST_NUMBER, mLastNumber);
     }
 }

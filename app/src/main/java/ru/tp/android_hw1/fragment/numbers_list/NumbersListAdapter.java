@@ -19,18 +19,17 @@ import ru.tp.android_hw1.fragment.OneNumberFragment;
 
 class NumbersListAdapter extends RecyclerView.Adapter<NumbersListViewHolder> {
     private final List<Number> mNumbers;
-    private static int mNumbersCount;
     private final FragmentManager mFragmentManager;
 
     NumbersListAdapter(FragmentManager fragmentManager) {
         mNumbers = new ArrayList<Number>();
-        mNumbersCount = 0;
         mFragmentManager = fragmentManager;
     }
 
     public void addNumber() {
-        mNumbers.add(new Number(++mNumbersCount));
-        notifyItemInserted(mNumbersCount);
+        int numbersCount = mNumbers.size() + 1;
+        mNumbers.add(new Number(numbersCount));
+        notifyItemInserted(numbersCount);
     }
 
     @NonNull

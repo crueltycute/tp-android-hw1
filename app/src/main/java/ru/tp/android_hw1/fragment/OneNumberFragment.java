@@ -14,10 +14,10 @@ import ru.tp.android_hw1.R;
 import ru.tp.android_hw1.fragment.numbers_list.Number;
 
 public class OneNumberFragment extends Fragment {
-    private static Number CurrentNumber;
+    private static Number mCurrentNumber;
 
     public static OneNumberFragment newInstance(int currentNumber) {
-        CurrentNumber = new Number(currentNumber);
+        mCurrentNumber = new Number(currentNumber);
         OneNumberFragment fragment = new OneNumberFragment();
         Bundle bundle = new Bundle();
         fragment.setArguments(bundle);
@@ -41,7 +41,7 @@ public class OneNumberFragment extends Fragment {
 
         TextView oneNumberView = view.findViewById(R.id.one_number_fragment);
 
-        oneNumberView.setText(String.valueOf(CurrentNumber.getNumber()));
-        oneNumberView.setTextColor(CurrentNumber.getColor());
+        oneNumberView.setText(String.valueOf(mCurrentNumber.getNumber()));
+        oneNumberView.setTextColor(mCurrentNumber.getColor());
     }
 }
