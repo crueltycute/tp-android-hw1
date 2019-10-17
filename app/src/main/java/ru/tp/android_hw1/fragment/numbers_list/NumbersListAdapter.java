@@ -30,6 +30,7 @@ class NumbersListAdapter extends RecyclerView.Adapter<NumbersListViewHolder> {
         int numbersCount = mNumbers.size() + 1;
         mNumbers.add(new Number(numbersCount));
         notifyItemInserted(numbersCount);
+
     }
 
     @NonNull
