@@ -52,7 +52,7 @@ class NumbersListAdapter extends RecyclerView.Adapter<NumbersListViewHolder> {
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = mFragmentManager.beginTransaction();
-                transaction.replace(R.id.numbers_list_fragment, OneNumberFragment.newInstance(num.getNumber()));
+                transaction.replace(R.id.main, OneNumberFragment.newInstance(num.getNumber()));
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
