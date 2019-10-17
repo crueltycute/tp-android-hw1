@@ -5,13 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.app.Fragment;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import ru.tp.android_hw1.R;
-import ru.tp.android_hw1.fragment.numbers_list.Number;
+import ru.tp.android_hw1.adapter.Number;
 
 public class OneNumberFragment extends Fragment {
     private static Number mCurrentNumber;
@@ -21,6 +21,7 @@ public class OneNumberFragment extends Fragment {
         OneNumberFragment fragment = new OneNumberFragment();
         Bundle bundle = new Bundle();
         fragment.setArguments(bundle);
+
         return fragment;
     }
 
@@ -40,11 +41,11 @@ public class OneNumberFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         View view = getView();
-
         assert view != null;
+
         TextView oneNumberView = view.findViewById(R.id.one_number_fragment);
 
         oneNumberView.setText(String.valueOf(mCurrentNumber.getNumber()));
-        oneNumberView.setTextColor(mCurrentNumber.getColor());
+        oneNumberView.setTextColor(getResources().getColor(mCurrentNumber.getColor()));
     }
 }

@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Homework</string>
-    <string name="button_name">add</string>
+    <string name="button_name">+</string>
 </resources>

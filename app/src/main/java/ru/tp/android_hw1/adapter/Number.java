@@ -1,6 +1,7 @@
-package ru.tp.android_hw1.fragment.numbers_list;
+package ru.tp.android_hw1.adapter;
 
-import android.graphics.Color;
+import ru.tp.android_hw1.R;
+
 
 public class Number {
     private final int mNumber;
@@ -20,6 +21,6 @@ public class Number {
     }
 
     private int countNumberColor(int number) {
-        return number % 2 == 1 ? Color.RED : Color.BLUE;  // 0 - четное, красный; 1 - нечетное, синий
+        return number % 2 == 1 ? R.color.colorEvenNumber : R.color.colorOddNumber;
     }
 }

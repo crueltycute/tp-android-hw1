@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/numbers_list_fragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#F1F1F1">
+    android:layout_height="match_parent" >
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/numbers_list_view"
@@ -13,17 +12,17 @@
 
     <Button
         android:id="@+id/new_number"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:gravity="center"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="10dp"
-        android:padding="20dp"
+        android:layout_margin="20dp"
         android:text="@string/button_name"
-        android:textSize="30sp"
-        android:drawableLeft="@android:drawable/ic_input_add"
-        android:drawableStart="@android:drawable/ic_input_add"
-         />
+        android:textSize="45sp"
+        android:textColor="@color/colorBackground"
+        android:background="@color/colorEvenNumber"
+        />
 
 </RelativeLayout>

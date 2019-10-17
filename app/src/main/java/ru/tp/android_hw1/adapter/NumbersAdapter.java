@@ -1,13 +1,14 @@
-package ru.tp.android_hw1.fragment.numbers_list;
+package ru.tp.android_hw1.adapter;
 
+import android.app.Activity;
+import android.app.FragmentTransaction;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -17,27 +18,26 @@ import ru.tp.android_hw1.R;
 import ru.tp.android_hw1.fragment.OneNumberFragment;
 
 
-class NumbersListAdapter extends RecyclerView.Adapter<NumbersListViewHolder> {
+public class NumbersAdapter extends RecyclerView.Adapter<NumbersListViewHolder> {
     private final List<Number> mNumbers;
-    private final FragmentManager mFragmentManager;
+    private final Context mContext;
 
-    NumbersListAdapter(FragmentManager fragmentManager) {
+    public NumbersAdapter(Context context) {
         mNumbers = new ArrayList<Number>();
-        mFragmentManager = fragmentManager;
+        mContext = context;
     }
 
     public void addNumber() {
         int numbersCount = mNumbers.size() + 1;
         mNumbers.add(new Number(numbersCount));
         notifyItemInserted(numbersCount);
-
     }
 
     @NonNull
     @Override
     public NumbersListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View numberView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.number, parent, false);
+                .inflate(R.layout.view_number, parent, false);
         return new NumbersListViewHolder(numberView);
     }
 
@@ -45,14 +45,15 @@ class NumbersListAdapter extends RecyclerView.Adapter<NumbersListViewHolder> {
     public void onBindViewHolder(@NonNull NumbersListViewHolder holder, int position) {
         final Number num = mNumbers.get(position);
 
-        holder.Number.setText(String.valueOf(num.getNumber()));
-        holder.Number.setTextColor(num.getColor());
+        holder.numberView.setText(String.valueOf(num.getNumber()));
+        holder.numberView.setTextColor(mContext.getResources().getColor(num.getColor()));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction transaction = mFragmentManager.beginTransaction();
-                transaction.replace(R.id.main, OneNumberFragment.newInstance(num.getNumber()));
+                FragmentTransaction transaction = ((Activity) mContext).getFragmentManager()
+                        .beginTransaction();
+                transaction.replace(R.id.main_container, OneNumberFragment.newInstance(num.getNumber()));
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
@@ -66,10 +67,10 @@ class NumbersListAdapter extends RecyclerView.Adapter<NumbersListViewHolder> {
 }
 
 class NumbersListViewHolder extends RecyclerView.ViewHolder {
-    public final TextView Number;
+    final TextView numberView;
 
-    public NumbersListViewHolder(@NonNull View itemView) {
+    NumbersListViewHolder(@NonNull View itemView) {
         super(itemView);
-        Number = itemView.findViewById(R.id.number);
+        numberView = itemView.findViewById(R.id.number);
     }
 }
