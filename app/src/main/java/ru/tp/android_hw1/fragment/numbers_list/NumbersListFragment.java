@@ -1,4 +1,4 @@
-package ru.tp.android_hw1.fragment.NumbersList;
+package ru.tp.android_hw1.fragment.numbers_list;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

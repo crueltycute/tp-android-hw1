@@ -1,10 +1,10 @@
-package ru.tp.android_hw1.fragment.NumbersList;
+package ru.tp.android_hw1.fragment.numbers_list;
 
 import android.graphics.Color;
 
 public class Number {
-    private int mNumber;
-    private int mColor;
+    private final int mNumber;
+    private final int mColor;
 
     public Number(int number) {
         mNumber = number;

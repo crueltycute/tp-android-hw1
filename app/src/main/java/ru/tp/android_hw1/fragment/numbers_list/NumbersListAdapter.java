@@ -1,6 +1,5 @@
-package ru.tp.android_hw1.fragment.NumbersList;
+package ru.tp.android_hw1.fragment.numbers_list;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,19 +17,15 @@ import ru.tp.android_hw1.R;
 import ru.tp.android_hw1.fragment.OneNumberFragment;
 
 
-public class NumbersListAdapter extends RecyclerView.Adapter<NumbersListViewHolder> {
-    private List<Number> mNumbers;
+class NumbersListAdapter extends RecyclerView.Adapter<NumbersListViewHolder> {
+    private final List<Number> mNumbers;
     private static int mNumbersCount;
-    private FragmentManager mFragmentManager;
+    private final FragmentManager mFragmentManager;
 
     NumbersListAdapter(FragmentManager fragmentManager) {
         mNumbers = new ArrayList<Number>();
         mNumbersCount = 0;
         mFragmentManager = fragmentManager;
-    }
-
-    public int getNumbersCount() {
-        return mNumbersCount;
     }
 
     public void addNumber() {

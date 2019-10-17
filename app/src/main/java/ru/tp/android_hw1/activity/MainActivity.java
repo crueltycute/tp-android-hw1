@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 
 import ru.tp.android_hw1.R;
-import ru.tp.android_hw1.fragment.NumbersList.NumbersListFragment;
+import ru.tp.android_hw1.fragment.numbers_list.NumbersListFragment;
 
 public class MainActivity extends AppCompatActivity {
 

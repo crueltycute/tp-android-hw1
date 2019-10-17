@@ -1,7 +1,6 @@
 package ru.tp.android_hw1.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import ru.tp.android_hw1.R;
-import ru.tp.android_hw1.fragment.NumbersList.Number;
+import ru.tp.android_hw1.fragment.numbers_list.Number;
 
 public class OneNumberFragment extends Fragment {
     private static Number CurrentNumber;
