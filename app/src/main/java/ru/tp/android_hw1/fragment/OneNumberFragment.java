@@ -41,6 +41,7 @@ public class OneNumberFragment extends Fragment {
 
         View view = getView();
 
+        assert view != null;
         TextView oneNumberView = view.findViewById(R.id.one_number_fragment);
 
         oneNumberView.setText(String.valueOf(mCurrentNumber.getNumber()));

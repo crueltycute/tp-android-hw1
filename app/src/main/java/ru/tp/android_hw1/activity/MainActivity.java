@@ -1,5 +1,6 @@
 package ru.tp.android_hw1.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -39,19 +40,14 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
         outState.putInt("key", mNumbersCount);
     }
 
     @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        if (savedInstanceState != null) {
-            mNumbersCount = savedInstanceState.getInt("key");
-            return;
-        }
-
-        mNumbersCount = getResources().getInteger(R.integer.numbers_count);
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        mNumbersCount = savedInstanceState.getInt("key");
     }
 }

@@ -19,7 +19,7 @@ import ru.tp.android_hw1.R;
 
 public class NumbersListFragment extends Fragment {
     private static int mLastNumber;
-    private static String KEY_LAST_NUMBER = "key_last_number";
+    private static final String KEY_LAST_NUMBER = "key_last_number";
 
     public static NumbersListFragment newInstance(int numberCount) {
         NumbersListFragment fragment = new NumbersListFragment();
@@ -52,14 +52,13 @@ public class NumbersListFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
 
         if (savedInstanceState != null) {
             mLastNumber = savedInstanceState.getInt(KEY_LAST_NUMBER);
         }
-
-        View view = getView();
 
         RecyclerView numbersView = view.findViewById(R.id.numbers_list_view);
 
@@ -71,8 +70,7 @@ public class NumbersListFragment extends Fragment {
             columnsNum = 4;
         }
 
-        GridLayoutManager numbersLayoutManager = new GridLayoutManager(getContext(), columnsNum,
-                currentOrientation, false);
+        GridLayoutManager numbersLayoutManager = new GridLayoutManager(getContext(), columnsNum);
         numbersView.setLayoutManager(numbersLayoutManager);
 
         final NumbersListAdapter numbersAdapter = new NumbersListAdapter(getFragmentManager());
@@ -91,6 +89,47 @@ public class NumbersListFragment extends Fragment {
             }
         });
     }
+//
+//    @Override
+//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//
+//        if (savedInstanceState != null) {
+//            mLastNumber = savedInstanceState.getInt(KEY_LAST_NUMBER);
+//        }
+//
+//        View view = getView();
+//
+//        assert view != null;
+//        RecyclerView numbersView = view.findViewById(R.id.numbers_list_view);
+//
+//        int columnsNum = 3;
+//        int currentOrientation = getResources().getConfiguration().orientation;
+//        Log.d("orientation","current: " + currentOrientation);
+//
+//        if (currentOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+//            columnsNum = 4;
+//        }
+//
+//        GridLayoutManager numbersLayoutManager = new GridLayoutManager(getContext(), columnsNum);
+//        numbersView.setLayoutManager(numbersLayoutManager);
+//
+//        final NumbersListAdapter numbersAdapter = new NumbersListAdapter(getFragmentManager());
+//        numbersView.setAdapter(numbersAdapter);
+//
+//        for (int i = 1; i <= mLastNumber; i++) {
+//            numbersAdapter.addNumber();
+//        }
+//
+//        Button newNumberButton = view.findViewById(R.id.new_number);
+//        newNumberButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mLastNumber++;
+//                numbersAdapter.addNumber();
+//            }
+//        });
+//    }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
