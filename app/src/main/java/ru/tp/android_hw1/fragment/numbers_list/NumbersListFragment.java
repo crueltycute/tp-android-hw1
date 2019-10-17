@@ -2,6 +2,7 @@ package ru.tp.android_hw1.fragment.numbers_list;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,12 +65,14 @@ public class NumbersListFragment extends Fragment {
 
         int columnsNum = 3;
         int currentOrientation = getResources().getConfiguration().orientation;
+        Log.d("orientation","current: " + currentOrientation);
 
         if (currentOrientation == Configuration.ORIENTATION_LANDSCAPE) {
             columnsNum = 4;
         }
 
-        GridLayoutManager numbersLayoutManager = new GridLayoutManager(getContext(), columnsNum, currentOrientation, false);
+        GridLayoutManager numbersLayoutManager = new GridLayoutManager(getContext(), columnsNum,
+                currentOrientation, false);
         numbersView.setLayoutManager(numbersLayoutManager);
 
         final NumbersListAdapter numbersAdapter = new NumbersListAdapter(getFragmentManager());
