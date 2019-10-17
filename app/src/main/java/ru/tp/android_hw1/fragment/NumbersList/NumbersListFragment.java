@@ -2,7 +2,6 @@ package ru.tp.android_hw1.fragment.NumbersList;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,13 +10,10 @@ import android.widget.Button;
 import androidx.fragment.app.Fragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import ru.tp.android_hw1.R;
-import ru.tp.android_hw1.fragment.OneNumberFragment;
 
 
 public class NumbersListFragment extends Fragment {
@@ -39,8 +35,6 @@ public class NumbersListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.d(getLogTag(), "onCreateView");
-
         return inflater.inflate(R.layout.fragment_numbers_list, container, false);
     }
 
@@ -64,28 +58,21 @@ public class NumbersListFragment extends Fragment {
         numbersView.setAdapter(numbersAdapter);
 
         for (int i = 1; i <= lastNumber; i++) {
-            numbersAdapter.addNumber(i);
+            numbersAdapter.addNumber();
         }
 
         Button newNumberButton = view.findViewById(R.id.new_number);
         newNumberButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                numbersAdapter.addNumber(++lastNumber);
-                Log.d(getLogTag(), "onClick newNumberButton: " + lastNumber);
+                lastNumber++;
+                numbersAdapter.addNumber();
             }
         });
-
-        Log.d(getLogTag(), "onViewCreated");
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        Log.d(getLogTag(), "onSaveInstanceState");
-    }
-
-    private String getLogTag() {
-        return getClass().getSimpleName();
     }
 }

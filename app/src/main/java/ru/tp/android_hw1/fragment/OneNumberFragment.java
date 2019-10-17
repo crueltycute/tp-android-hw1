@@ -42,7 +42,7 @@ public class OneNumberFragment extends Fragment {
 
         TextView oneNumberView = view.findViewById(R.id.one_number_fragment);
 
-        oneNumberView.setText(String.valueOf(CurrentNumber.Number));
-        oneNumberView.setTextColor(CurrentNumber.mColor);
+        oneNumberView.setText(String.valueOf(CurrentNumber.getNumber()));
+        oneNumberView.setTextColor(CurrentNumber.getColor());
     }
 }
