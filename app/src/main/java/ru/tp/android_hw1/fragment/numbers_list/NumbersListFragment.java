@@ -51,12 +51,14 @@ public class NumbersListFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
         if (savedInstanceState != null) {
             mLastNumber = savedInstanceState.getInt(KEY_LAST_NUMBER);
         }
+
+        View view = getView();
 
         RecyclerView numbersView = view.findViewById(R.id.numbers_list_view);
 

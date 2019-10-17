@@ -10,7 +10,7 @@ import ru.tp.android_hw1.R;
 import ru.tp.android_hw1.fragment.numbers_list.NumbersListFragment;
 
 public class MainActivity extends AppCompatActivity {
-    private int mNumbersCount = 100;
+    private int mNumbersCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addNumbersListFragment() {
+        mNumbersCount = getResources().getInteger(R.integer.numbers_count);
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
@@ -33,5 +35,23 @@ public class MainActivity extends AppCompatActivity {
         }
 
         transaction.commit();
+    }
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putInt("key", mNumbersCount);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            mNumbersCount = savedInstanceState.getInt("key");
+            return;
+        }
+
+        mNumbersCount = getResources().getInteger(R.integer.numbers_count);
     }
 }
